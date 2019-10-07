@@ -29,4 +29,7 @@ defer catch.Catch(func(err error) {
 
 user, err := getUser()
 catch.Check(err)
+
+color, err := user.GetFavoriteColor()
+catch.Check(err)
 ```
