@@ -1,8 +1,9 @@
-package auth
+package http
 
 import (
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
+	"net/url"
 )
 
 func BasicAuth(handler http.HandlerFunc, username, password, message string) http.HandlerFunc {
@@ -22,4 +23,12 @@ func BasicAuth(handler http.HandlerFunc, username, password, message string) htt
 func hashCompare(password string, pass string) error {
 	hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.MinCost)
 	return bcrypt.CompareHashAndPassword(hash, []byte(pass))
+}
+
+func AddParams(url *url.URL, params map[string]string) {
+	p := url.Values{}
+	for k, v := range params {
+		p.Add(k, v)
+	}
+	url.RawQuery = p.Encode()
 }
