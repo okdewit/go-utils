@@ -1,5 +1,5 @@
 # go-utils
-Collection of golang utility & testing functions
+Collection of some personal golang utility & testing functions
 
 ## Disclaimer
 
