@@ -25,10 +25,10 @@ func hashCompare(password string, pass string) error {
 	return bcrypt.CompareHashAndPassword(hash, []byte(pass))
 }
 
-func AddParams(url *url.URL, params map[string]string) {
-	p := url.Values{}
+func AddParams(uri *url.URL, params map[string]string) {
+	p := uri.Query()
 	for k, v := range params {
 		p.Add(k, v)
 	}
-	url.RawQuery = p.Encode()
+	uri.RawQuery = p.Encode()
 }
