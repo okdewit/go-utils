@@ -1,6 +1,7 @@
 package httputils
 
 import (
+	"github.com/stretchr/testify/assert"
 	"net/url"
 	"testing"
 )
@@ -8,7 +9,5 @@ import (
 func TestAddParams(t *testing.T) {
 	uri, _ := url.Parse("https://example.com")
 	AddParams(uri, map[string]string{"key": "value"})
-	if uri.String() != "https://example.com?key=value" {
-		t.Errorf("AddParams result is %s; want https://example.com?key=value", uri.String())
-	}
+	assert.Equal(t, "https://example.com?key=value", uri.String())
 }

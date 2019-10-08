@@ -2,4 +2,7 @@ module github.com/okdewit/go-utils
 
 go 1.12
 
-require golang.org/x/crypto v0.0.0-20191002192127-34f69633bfdc
+require (
+	github.com/stretchr/testify v1.4.0
+	golang.org/x/crypto v0.0.0-20191002192127-34f69633bfdc
+)
