@@ -24,7 +24,7 @@ type Quarter struct {
 }
 
 
-func toQuarter(t time.Time) (Quarter) {
+func ToQuarter(t time.Time) (Quarter) {
 	return Quarter{
 		Y: t.Year(),
 		Q: int((time.Now().Month()+2)/3),
@@ -36,17 +36,17 @@ func (quarter *Quarter) String() string {
 }
 
 func (quarter Quarter) IsCurrent() bool {
-	current := toQuarter(time.Now())
+	current := ToQuarter(time.Now())
 	return quarter.Y == current.Y && quarter.Q == current.Q
 }
 
 func (quarter Quarter) IsFuture() bool {
-	current := toQuarter(time.Now())
+	current := ToQuarter(time.Now())
 	return quarter.Y > current.Y || (quarter.Y == current.Y && quarter.Q > current.Q)
 }
 
 func (quarter Quarter) IsPast() bool {
-	current := toQuarter(time.Now())
+	current := ToQuarter(time.Now())
 	return quarter.Y < current.Y || (quarter.Y == current.Y && quarter.Q < current.Q)
 }
 
