@@ -50,6 +50,19 @@ func (quarter Quarter) IsPast() bool {
 	return quarter.Y < current.Y || (quarter.Y == current.Y && quarter.Q < current.Q)
 }
 
+func (quarter *Quarter) Next() *Quarter {
+	if quarter.Q == 4 {quarter.Y++}
+	quarter.Q = (quarter.Q % 4) + 1
+	return quarter
+}
+
+func (quarter *Quarter) Previous() *Quarter {
+	if quarter.Q == 1 {quarter.Y--}
+	// Modulo is not same as remainder for negatives
+	quarter.Q = ((quarter.Q + 2) % 4) + 1
+	return quarter
+}
+
 func (quarter *Quarter) Boundaries() (a time.Time, b time.Time) {
 	return time.Date(quarter.Y, time.Month((quarter.Q-1)*3+1), 1, 0, 0, 0, 0, time.UTC),
 		time.Date(quarter.Y,time.Month((quarter.Q-1)*3+4), 1, 0, 0, 0, -1, time.UTC)

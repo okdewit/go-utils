@@ -37,3 +37,25 @@ func TestFmtDuration(t *testing.T) {
 	assert.Equal(t, "1 days 02:00", FmtDuration(26 * time.Hour))
 	assert.Equal(t, "100 days 00:00", FmtDuration(100 * 24 * time.Hour))
 }
+
+func TestNext(t *testing.T) {
+	quarter := Quarter{Y: 2019, Q: 3}
+	q := quarter.Next()
+	assert.Equal(t, 2019, q.Y)
+	assert.Equal(t, 4, q.Q)
+
+	q = q.Next()
+	assert.Equal(t, 2020, q.Y)
+	assert.Equal(t, 1, q.Q)
+}
+
+func TestPrevious(t *testing.T) {
+	quarter := Quarter{Y: 2019, Q: 2}
+	q := quarter.Previous()
+	assert.Equal(t, 2019, q.Y)
+	assert.Equal(t, 1, q.Q)
+
+	q = q.Previous()
+	assert.Equal(t, 2018, q.Y)
+	assert.Equal(t, 4, q.Q)
+}
