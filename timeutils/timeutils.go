@@ -2,6 +2,7 @@ package timeutils
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -32,7 +33,7 @@ func ToQuarter(t time.Time) (Quarter) {
 }
 
 func (quarter *Quarter) String() string {
-	return string(quarter.Y) + "-Q" + string(quarter.Q)
+	return strconv.Itoa(quarter.Y) + "-Q" + strconv.Itoa(quarter.Q)
 }
 
 func (quarter Quarter) IsCurrent() bool {

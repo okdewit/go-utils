@@ -59,3 +59,7 @@ func TestPrevious(t *testing.T) {
 	assert.Equal(t, 2018, q.Y)
 	assert.Equal(t, 4, q.Q)
 }
+
+func TestString(t *testing.T) {
+	assert.Equal(t, "2019-Q2", (&Quarter{Y: 2019, Q: 2}).String())
+}
