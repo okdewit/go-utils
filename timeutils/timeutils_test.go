@@ -3,6 +3,7 @@ package timeutils
 import (
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"time"
 )
 
 func TestQuarterBoundaries(t *testing.T) {
@@ -29,4 +30,10 @@ func TestQuarterBoundaries(t *testing.T) {
 		assert.Equal(t, "1501-10-01", s.Format("2006-01-02"))
 		assert.Equal(t, "1501-12-31", e.Format("2006-01-02"))
 	})
+}
+
+func TestFmtDuration(t *testing.T) {
+	assert.Equal(t, "00:12", FmtDuration(12 * time.Minute))
+	assert.Equal(t, "1 days 02:00", FmtDuration(26 * time.Hour))
+	assert.Equal(t, "100 days 00:00", FmtDuration(100 * 24 * time.Hour))
 }
